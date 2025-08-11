@@ -36,8 +36,7 @@ async function getAvailableRoles(token: string, projectId: string): Promise<Proj
 
 // --- COMPONENT TRANG CHÍNH ĐÃ ĐƯỢC SỬA LỖI ---
 
-export default async function EditUserPage({ params }: { params: { id: string, userId: string } }) {
-    // --- FIX 1: Dùng await params như bạn đã khám phá ---
+export default async function EditUserPage({ params }: { params: Promise<{ id: string, userId: string }> }) {
     const { id: projectId, userId } = await params;
 
     const token = (await cookies()).get('owner-token')?.value;

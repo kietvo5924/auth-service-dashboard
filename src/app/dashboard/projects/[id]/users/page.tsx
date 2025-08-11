@@ -33,7 +33,7 @@ async function getAvailableRoles(token: string, projectId: string): Promise<Proj
     return res.json();
 }
 
-export default async function ProjectUsersPage({ params }: { params: { id: string } }) {
+export default async function ProjectUsersPage({ params }: { params: Promise<{ id: string }> }) {
     const { id: projectId } = await params;
 
     const token = (await cookies()).get('owner-token')?.value;

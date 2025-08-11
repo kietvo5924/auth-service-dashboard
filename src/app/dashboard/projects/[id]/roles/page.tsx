@@ -11,7 +11,7 @@ async function getProjectRoles(token: string, projectId: string): Promise<Projec
     return res.json();
 }
 
-export default async function ProjectRolesPage({ params }: { params: { id: string } }) {
+export default async function ProjectRolesPage({ params }: { params: Promise<{ id: string }> }) {
     const { id: projectId } = await params;
     const token = (await cookies()).get('owner-token')?.value;
     const initialRoles = token ? await getProjectRoles(token, projectId) : [];

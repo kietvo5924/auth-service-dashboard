@@ -18,10 +18,11 @@ async function getProjectDetails(token: string, projectId: string): Promise<Proj
     return res.json();
 }
 
-export default async function ProjectDetailPage({ params }: { params: { id: string } }) {
-    const { id } = await params;
+export default async function ProjectDetailPage({ params }: { params: Promise<{ id: string }> }) {
+    const { id: projectId } = await params;
+
     const token = (await cookies()).get('owner-token')?.value;
-    const project = token ? await getProjectDetails(token, id) : null;
+    const project = token ? await getProjectDetails(token, projectId) : null;
 
     if (!project) {
         return (
@@ -55,12 +56,12 @@ export default async function ProjectDetailPage({ params }: { params: { id: stri
                 <DashboardCard
                     title="Quản lý End-User"
                     description="Xem danh sách, phân quyền và quản lý tất cả người dùng cuối của project này."
-                    href={`/dashboard/projects/${id}/users`}
+                    href={`/dashboard/projects/${projectId}/users`}
                 />
                 <DashboardCard
                     title="Quản lý Vai trò (Roles)"
                     description="Tạo và chỉnh sửa các vai trò và quyền hạn cho người dùng cuối."
-                    href={`/dashboard/projects/${id}/roles`}
+                    href={`/dashboard/projects/${projectId}/roles`}
                 />
             </div>
         </div>
