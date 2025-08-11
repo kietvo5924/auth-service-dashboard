@@ -60,7 +60,7 @@ export default async function ProjectsPage() {
                         </div>
                     ))
                 ) : (
-                    <p className="text-gray-500">You haven't created any projects yet.</p>
+                    <p className="text-gray-500">You haven&apos;t created any projects yet.</p>
                 )}
             </div>
         </div>
