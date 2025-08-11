@@ -1,103 +1,66 @@
-import Image from "next/image";
+import Link from 'next/link';
+
+// Component nhỏ cho từng thẻ tính năng
+function FeatureCard({ title, description }: { title: string; description: string }) {
+  return (
+    <div className="p-6 bg-white rounded-lg shadow-md border border-gray-200">
+      <h3 className="text-lg font-semibold text-gray-800 mb-2">{title}</h3>
+      <p className="text-gray-600">{description}</p>
+    </div>
+  );
+}
 
 export default function Home() {
   return (
-    <div className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="font-mono list-inside list-decimal text-sm/6 text-center sm:text-left">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] font-mono font-semibold px-1 py-0.5 rounded">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
+    <div>
+      {/* Hero Section */}
+      <section className="text-center py-20 bg-gray-50 rounded-lg">
+        <h1 className="text-4xl md:text-5xl font-extrabold text-gray-900">
+          Nền tảng Xác thực Mạnh mẽ cho Ứng dụng của bạn
+        </h1>
+        <p className="mt-4 text-lg text-gray-600 max-w-2xl mx-auto">
+          Tập trung vào việc xây dựng sản phẩm, để chúng tôi lo việc xác thực và phân quyền người dùng phức tạp.
+        </p>
+        <Link
+          href="/dashboard"
+          className="mt-8 inline-block px-8 py-3 text-lg font-semibold text-white bg-indigo-600 rounded-md hover:bg-indigo-700"
+        >
+          Bắt đầu Ngay
+        </Link>
+      </section>
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+      {/* Features Section */}
+      <section id="features" className="py-20">
+        <h2 className="text-3xl font-bold text-center text-gray-800 mb-12">
+          Các tính năng Vượt trội
+        </h2>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <FeatureCard
+            title="Kiến trúc Đa người dùng"
+            description="Mỗi Owner có thể tạo và quản lý nhiều project độc lập, mỗi project có bộ người dùng và vai trò riêng."
+          />
+          <FeatureCard
+            title="Phân quyền Linh hoạt"
+            description="Tự do định nghĩa vai trò (Role), cấp bậc (Level) chi tiết cho từng project."
+          />
+          <FeatureCard
+            title="Thư viện Client (SDK)"
+            description="Cung cấp Spring Boot Starter tiện lợi với Annotation và SDK, giúp tích hợp vào ứng dụng của bạn chỉ trong vài phút."
+          />
+          <FeatureCard
+            title="Bảo mật Cao"
+            description="Xác thực bằng JWT, tự động vô hiệu hóa token cũ khi đổi mật khẩu, bảo vệ an toàn cho người dùng."
+          />
+          <FeatureCard
+            title="Luồng Xác thực Đầy đủ"
+            description="Bao gồm đăng ký, đăng nhập, xác thực email, quên mật khẩu bằng OTP cho cả Owner và End-User."
+          />
+          <FeatureCard
+            title="Sẵn sàng Triển khai"
+            description="Được thiết kế để dễ dàng đóng gói bằng Docker và deploy lên các nền tảng đám mây như Render."
+          />
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+      </section>
     </div>
   );
 }
