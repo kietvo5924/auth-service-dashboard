@@ -34,9 +34,9 @@ async function verifyTokenOnServer(token: string, apiKey?: string): Promise<{ su
     }
 }
 
-export default async function VerifyEmailPage({ searchParams }: { searchParams: { token: string, apiKey?: string } }) {
+export default async function VerifyEmailPage({ searchParams }: { searchParams: Promise<{ token: string, apiKey?: string }> }) {
 
-    const { token, apiKey } = searchParams;
+    const { token, apiKey } = await searchParams;
     const result = await verifyTokenOnServer(token, apiKey);
 
     return (
