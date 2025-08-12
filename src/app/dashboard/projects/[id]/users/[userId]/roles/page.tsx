@@ -34,11 +34,10 @@ async function getAvailableRoles(token: string, projectId: string): Promise<Proj
     }
 }
 
-// --- COMPONENT TRANG CHÍNH ĐÃ ĐƯỢC SỬA LỖI ---
-export default async function EditUserPage({ params }: { params: { id: string, userId: string } }) {
-    // Truy cập trực tiếp vào params, không dùng await
-    const projectId = params.id;
-    const userId = params.userId;
+export default async function EditUserPage(
+    props: { params: Promise<{ id: string; userId: string }> }
+) {
+    const { id: projectId, userId } = await props.params; // chờ params resolve
 
     const token = (await cookies()).get('owner-token')?.value;
 
@@ -48,7 +47,7 @@ export default async function EditUserPage({ params }: { params: { id: string, u
     ]);
 
     if (!user) {
-        return <div>User not found or you do not have permission.</div>
+        return <div>User not found or you do not have permission.</div>;
     }
 
     return (
