@@ -76,7 +76,7 @@ export default function EditUserClient({ user, availableRoles, projectId }: Edit
                     <button type="button" onClick={() => router.back()} className="px-4 py-2 bg-gray-200 rounded-md">
                         Quay lại
                     </button>
-                    <button type="submit" disabled={isPending} className="button-primary px-4 h-10">
+                    <button type="submit" disabled={isPending} className="px-4 py-2 bg-indigo-600 text-white rounded-md hover:bg-indigo-700 transition disabled:bg-indigo-400">
                         {isPending ? <LoadingSpinner /> : 'Lưu Thay đổi'}
                     </button>
                 </div>
